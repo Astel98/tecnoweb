@@ -118,4 +118,18 @@ class UserController extends Controller
 
         return ['usuarios' => $usuarios];
     }
+
+    public function perfil()
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        return view('perfil', ['user' => $user]);
+    }
+
+    public function editarPerfil()
+    {
+        //if (!$request->ajax()) return redirect('/');
+
+        $user = User::findOrFail(Auth::user()->id);
+        return view('editperfil', ['user' => $user]);
+    }
 }
