@@ -17,6 +17,7 @@ class CreateClientesTable extends Migration
             $table->integer('id')->unsigned();
             $table->primary('id');
             $table->boolean('estudiante');
+            $table->boolean('estado');
             $table->foreign('id')->references('id')->on('users');
             $table->integer('id_tarifa')->unsigned();
             $table->foreign('id_tarifa')->references('id')->on('tarifas');

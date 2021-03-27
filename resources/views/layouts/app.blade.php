@@ -20,8 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 </head>
-<body id="bodyTheme" style="background: linear-gradient(to right, skyblue, blue); ">
+<body id="bodyTheme">
     <div id="app">
         <nav id="navTheme" class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm" style="background:green;">
             <div class="container-fluid">
@@ -47,18 +48,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/tarifas">Tarifas</a>
                         </li>
+                        @if(Auth::user()->id_rol == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="/usuarios">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/reportes">Reportes</a>
+                            <a class="nav-link" href="/reporte">Reportes</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <form class="d-flex">
+                    <form class="d-flex" action="/busqueda" method="post">
                       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
+                      <button class="btn btn-outline-success" type="submit">Busqueda</button>
                     </form>
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -98,6 +101,36 @@
                                     <form id="perfil-form" action="/user/perfil" method="GET" class="d-none">
                                         @csrf
                                     </form>
+
+                                    <form class="dropdown-item">
+                                        <input type="button"
+                                        onclick="changeSize()"
+                                        value="Cambiar tamaño texto">
+                                    </form>
+
+                                    <form class="dropdown-item">
+                                        <input type="button"
+                                        onclick="estilo1()"
+                                        value="Estilo 1">
+                                    </form>
+
+                                    <form class="dropdown-item">
+                                        <input type="button"
+                                        onclick="estilo2()"
+                                        value="Estilo 2">
+                                    </form>
+
+                                    <form class="dropdown-item">
+                                        <input type="button"
+                                        onclick="estilo3()"
+                                        value="Estilo 3">
+                                    </form>
+
+                                    <form class="dropdown-item">
+                                        <input type="button"
+                                        onclick="remover()"
+                                        value="Estilo dia y noche">
+                                    </form>
                                 </div>
                             </li>
                         @endguest
@@ -105,10 +138,6 @@
                 </div>
             </div>
             <form>
-<input type="button"
-onclick="miFuncion()"
-value="Activar Función">
-</form>
         </nav>
 
         <main class="py-4">

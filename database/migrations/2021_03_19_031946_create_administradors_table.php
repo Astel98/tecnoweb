@@ -16,9 +16,15 @@ class CreateAdministradorsTable extends Migration
         Schema::create('administradors', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->primary('id');
+            $table->boolean('estado');
             $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        DB::table('administradors')->insert(array(
+            'id' => '1',
+            'estado' => 'true'
+        ));
     }
 
     /**

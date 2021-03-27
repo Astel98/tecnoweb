@@ -19,6 +19,14 @@ class CreateRolsTable extends Migration
             $table->string('descripcion',50);
             $table->timestamps();
         });
+
+        DB::table('rols')
+        ->insert(array('nombre' => 'Administrador','descripcion' => 'Gestiona todo'));
+        DB::table('rols')
+        ->insert(array('nombre' => 'Cliente','descripcion' => 'Cliente y ya'));
+        DB::table('rols')
+        ->insert(array('nombre' => 'Chofer','descripcion' => 'Empleado'));
+
     }
 
     /**

@@ -18,6 +18,7 @@ class CreateChofersTable extends Migration
             $table->primary('id');
             $table->time('hora_entrada');
             $table->time('hora_salida');
+            $table->boolean('estado');
             $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });

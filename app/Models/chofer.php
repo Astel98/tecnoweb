@@ -28,7 +28,8 @@ class chofer extends Model
     protected $fillable = [
         'id',
         'hora_entrada',
-        'hora_salida'
+        'hora_salida',
+        'estado'
     ];
 
     /**
