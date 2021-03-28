@@ -29,9 +29,13 @@ Route::get('/tarifas', [BusController::class, 'view'])->name('tarifas');
 Route::get('/usuarios', [BusController::class, 'view'])->name('usuarios');
 
 Route::get('/rol', [RolController::class, 'index']);
+Route::get('/roles', [RolController::class, 'listar']);
 Route::post('/rol/registrar', [RolController::class, 'store']);
 Route::put('/rol/actualizar', [RolController::class, 'update']);
 Route::get('/rol/selectRol', [RolController::class, 'selectRol']);
+Route::get('/rol/editar/{id}', [RolController::class, 'editar'])->name('editrol');
+Route::post('/rol/eliminar', [RolController::class, 'eliminar'])->name('deleterol');
+Route::post('/rol/update', [RolController::class, 'updateRol'])->name('updaterol');
 
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/usuarios', [UserController::class, 'listar']);

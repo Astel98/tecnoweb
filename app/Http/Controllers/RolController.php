@@ -65,4 +65,37 @@ class RolController extends Controller
 
         return ['roles' => $roles];
     }
+
+    public function listar()
+    {
+        $roles = rol::select('*')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('listaroles',['listaroles' => $roles]);
+    }
+
+    public function editar($id)
+    {
+        //if (!$request->ajax()) return redirect('/');
+        $rol = rol::findOrFail($id);
+        return view('editrol', ['rol' => $rol]);
+    }
+
+    public function updateRol(Request $request)
+    {
+        $rol = rol::findOrFail($request->id);
+        $rol->nombre = $request->nombre;
+        $rol->descripcion = $request->descripcion;
+        $rol->save();     
+        //listar();
+    }
+
+    public function eliminar(Request $request)
+    {
+        $rol = rol::findOrFail($request->id);
+        $rol->estado = 'false';
+        $rol->save();
+        listar();
+    }
 }

@@ -53,6 +53,9 @@
                             <a class="nav-link" href="/usuarios">Usuarios</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/roles">Roles</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/reporte">Reportes</a>
                         </li>
                         @endif
