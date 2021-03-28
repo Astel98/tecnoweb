@@ -5,7 +5,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\ReporteController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ReclamoController;
+use App\Http\Controllers\TarifaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +45,19 @@ Route::get('/user/selectUsuario', [UserController::class, 'selectUsuario']);
 
 Route::get('/reporte/buschofer', [ReporteController::class, 'getChoferBuses']);
 
+//C CRUD de tarifa begin
+Route::get('/tarifa/show',[TarifaController::class,'read'])->name('vertarifa');
+Route::get('/tarifa/showform',[TarifaController::class,'showForm'])->name('showformtarifa');
+Route::post('/tarifa/showform',[TarifaController::class,'create'])->name('showformtarifa');
+Route::get('/tarifa/modify/{id}',[TarifaController::class,'modify'])->name('modifytarifa');
+Route::post('/tarifa/update/{id}',[TarifaController::class,'update'])->name('updatetarifa');
+Route::get('/tarifa/delete/{id}', [TarifaController::class,'delete'])->name('deletetarifa');
+// end tarifa
+// CRUD de promocion begin
+Route::get('/promocion/show',[PromocionController::class,'read'])->name('verpromocion');
+Route::get('/promocion/showform',[PromocionController::class,'showForm'])->name('showformpromocion');
+Route::post('/promocion/showform',[PromocionController::class,'create'])->name('showformpromocion');
+Route::get('/promocion/modify/{id}',[PromocionController::class,'modify'])->name('modifypromocion');
+Route::post('/promocion/update/{id}',[PromocionController::class,'update'])->name('updatepromocion');
+Route::get('/promocion/delete/{id}', [PromocionController::class,'delete'])->name('deletepromocion');
+// end promociones
