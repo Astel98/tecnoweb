@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateAdministradorsTable extends Migration
 {
@@ -16,9 +17,15 @@ class CreateAdministradorsTable extends Migration
         Schema::create('administradors', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->primary('id');
+            $table->boolean('estado');
             $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        DB::table('administradors')->insert(array(
+            'id' => '1',
+            'estado' => 'true'
+        ));
     }
 
     /**

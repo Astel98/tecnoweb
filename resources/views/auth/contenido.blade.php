@@ -9,7 +9,7 @@
 </head>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
-<body id="bodyTheme" class="app flex-row align-items-center tarjeta" style="background: linear-gradient(to right, skyblue, blue); ">
+<body id="bodyTheme" class="app flex-row align-items-center tarjeta" style="background: linear-gradient(to right, skyblue, lime); ">
   <div class="container">
     @yield('login')
   </div>

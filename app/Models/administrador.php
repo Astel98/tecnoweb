@@ -26,7 +26,8 @@ class administrador extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id'
+        'id',
+        'estado'
     ];
 
     /**

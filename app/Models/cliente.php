@@ -28,7 +28,8 @@ class cliente extends Model
     protected $fillable = [
         'id',
         'estudiante',
-        'id_tarifa'
+        'id_tarifa',
+        'estado'
     ];
 
     /**

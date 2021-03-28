@@ -20,6 +20,10 @@ class CreateTarifasTable extends Migration
             $table->double('precio',8,2);
             $table->timestamps();
         });
+
+        DB::table('tarifas')
+        ->insert(array('nombre' => 'General','descripcion' => 'Tarifa para todos', 'precio'=>'2.00'));
+
     }
 
     /**

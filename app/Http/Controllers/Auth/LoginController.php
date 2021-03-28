@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cookie;
 
 class LoginController extends Controller
 {
@@ -70,14 +71,18 @@ class LoginController extends Controller
     public function showLoginForm(){
         return view('auth.login');
     }
+    public function showRegisterForm(){
+        return view('auth.register');
+    }
 
     public function login(Request $request){
         $this->validateLogin($request);
-
+  
         if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
-            return redirect()->route('home');
+            $text = Cookie::make('texto', 'medio', 60, '/', '', true, false);
+            $estilo = Cookie::make('estilo', 'none', 60, '/', '', true, false);
+            return redirect()->route('home')->withCookie($text)->withCookie($estilo);
         }
-
         return back()
         ->withErrors(['email' => trans('auth.failed')])
         ->withInput(request(['email']));
@@ -89,6 +94,7 @@ class LoginController extends Controller
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
+        return $request;
     }
 
     public function logout(Request $request)

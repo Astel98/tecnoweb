@@ -30,6 +30,9 @@
               </div>
             </div>
           </form>
+          <form action="/registrarse" method="GET">
+            <button type="submit" class="btn btn-primary px-4">Crea una cuenta</button>
+          </form>
         </div>
         <div id="cardLogin" class="card text-white py-5 d-md-down-none" style="width:44%;">
           <div class="card-body text-center">

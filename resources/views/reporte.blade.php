@@ -1,18 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="#">Active</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ $user-> nombre." ".$user->apellido}}</h5>
-    <p class="card-text">Nacido el: {{ $user-> fecha_nac}}</p>
-    <a href="/user/editarPerfil" class="btn btn-primary">Editar perfil</a>
-  </div>
-</div>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reportes</th>
+      <th scope="col">Reportes</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Buses</td>
+      <td><form action="/reporte/buses" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Rutas</td>
+      <td><form action="/reporte/rutas" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+    
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Usurarios</td>
+      <td><form action="/reporte/usuarios" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Clientes</td>
+      <td><form action="/reporte/clientes" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Estudiantes</td>
+      <td><form action="/reporte/estudiantes" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">#</th>
+      <td>Reporte de Choferes</td>
+      <td><form action="/reporte/choferes" method="GET"><button type="submit" class="bot">Descargar Reporte</button></form></td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">#</th>
+      <td>Estadisticas</td>
+      <td><form action="/reporte/usuarios" method="GET"><button type="submit" class="bot">Descargar Estadisticas</button></form></td>
+      
+    </tr>
+    
+  </tbody>
+</table>
 @endsection

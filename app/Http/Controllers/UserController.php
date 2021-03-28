@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //if (!$request->ajax()) return redirect('/');
-
+        //return csrf_token();
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
@@ -54,7 +54,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //if (!$request->ajax()) return redirect('/');
-        
         $user = new User();
         $user->nombre = $request->nombre;
         $user->apellido = $request->apellido;
@@ -66,6 +65,7 @@ class UserController extends Controller
         $user->fecha_nac = $request->fecha_nac;
         $user->password = bcrypt($request->password);
         $user->id_rol=$request->id_rol;
+        $user->estado="true";
         $user->save();
 
         $id = User::findByEmail($request->email);
@@ -73,6 +73,7 @@ class UserController extends Controller
         if($request->id_rol=='1'){
             $administrador = new administrador();
             $administrador->id = $id->id;
+            $administrador->estado = true;
             $administrador->save();
         }
 
@@ -81,6 +82,7 @@ class UserController extends Controller
             $cliente->id = $id->id;
             $cliente->estudiante = 'false';
             $cliente->id_tarifa = '1';
+            $cliente->estado = true;
             $cliente->save();
         }
 
@@ -89,24 +91,75 @@ class UserController extends Controller
             $chofer->id = $id->id;
             $chofer->hora_entrada = "00:00:00";
             $chofer->hora_salida = "00:00:00";
+            $chofer->estado = true;
             $chofer->save();
         }
+               
+    }
+
+    public function store2(Request $request)
+    {
+        //if (!$request->ajax()) return redirect('/');
+        $user = new User();
+        $user->nombre = $request->nombre;
+        $user->apellido = $request->apellido;
+        $user->email = $request->email;
+        $user->ci = $request->ci;
+        $user->genero = $request->genero;
+        $user->direccion = $request->direccion;
+        $user->telefono = $request->telefono;
+        $user->fecha_nac = $request->fecha_nac;
+        $user->password = bcrypt($request->password);
+        $user->id_rol=$request->id_rol;
+        $user->estado="true";
+        $user->save();
+
+        $id = User::findByEmail($request->email);
+
+        if($request->id_rol=='1'){
+            $administrador = new administrador();
+            $administrador->id = $id->id;
+            $administrador->estado = true;
+            $administrador->save();
+        }
+
+        if($request->id_rol=='2'){
+            $cliente = new cliente();
+            $cliente->id = $id->id;
+            $cliente->estudiante = 'false';
+            $cliente->id_tarifa = '1';
+            $cliente->estado = true;
+            $cliente->save();
+        }
+
+        if($request->id_rol=='3'){
+            $chofer = new chofer();
+            $chofer->id = $id->id;
+            $chofer->hora_entrada = "00:00:00";
+            $chofer->hora_salida = "00:00:00";
+            $chofer->estado = true;
+            $chofer->save();
+        }
+
+        return view('auth.login');
                
     }
 
     public function update(Request $request)
     {
         //if (!$request->ajax()) return redirect('/');
-
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail(Auth::user()->id);
         $user->nombre = $request->nombre;
-        $user->email = $request->email;
+        $user->apellido = $request->apellido;
+        $user->genero = $request->genero;
+        $user->direccion = $request->direccion;
         if($request->password != $user->password)
         {
             $user->password = bcrypt($request->password);
         }
-        $user->id_rol=$request->id_rol;
+        //$user->id_rol=$request->id_rol;
         $user->save();
+        return view('home');
     }
 
     
@@ -117,6 +170,16 @@ class UserController extends Controller
             ->get();
 
         return ['usuarios' => $usuarios];
+    }
+
+    public function listar()
+    {
+        $usuarios = User::select('*')
+            ->where('estado','=','true')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('listausuarios',['listausuarios' => $usuarios]);
     }
 
     public function perfil()
@@ -131,5 +194,94 @@ class UserController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
         return view('editperfil', ['user' => $user]);
+    }
+
+    public function editar(Request $request)
+    {
+        //if (!$request->ajax()) return redirect('/');
+        $user = User::findOrFail($request->id);
+        return view('edituser', ['user' => $user]);
+    }
+
+    public function editarUser(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+
+        $user->nombre = $request->nombre;
+        $user->apellido = $request->apellido;
+        $user->genero = $request->genero;
+        $user->direccion = $request->direccion;
+        $user_id_rol=-1;
+
+        if($request->rol == "administrador"){
+            $user_id_rol=1;
+        }else if($request->rol == "cliente"){
+            $user_id_rol=2;
+        }else{
+            $user_id_rol=3;
+        }
+        
+
+        if($user->id_rol != $user_id_rol){
+            if($user->id_rol == '1'){
+                $rol_user = administrador::find($user->id); 
+                $rol_user->estado = 'false';
+                $rol_user->save();
+            }else if($user->id_rol == '2'){
+                $rol_user = cliente::find($user->id); 
+                $rol_user->estado = 'false';
+                $rol_user->save();
+            }else{
+                $rol_user = chofer::find($user->id); 
+                $rol_user->estado = 'false';
+                $rol_user->save();
+            }
+
+            $user->id_rol=$user_id_rol;
+            $user->save();
+
+            if($user_id_rol=='1'){
+                $administrador = new administrador();
+                $administrador->id = $id->id;
+                $administrador->save();
+            }else if($user_id_rol=='2'){
+                $cliente = new cliente();
+                $cliente->id = $id->id;
+                $cliente->estudiante = 'false';
+                $cliente->id_tarifa = '1';
+                $cliente->save();
+            } else {
+                $chofer = new chofer();
+                $chofer->id = $id->id;
+                $chofer->hora_entrada = "00:00:00";
+                $chofer->hora_salida = "00:00:00";
+                $chofer->save();
+            }
+        }else{
+            $user->save();
+        }        
+        listar();
+    }
+
+    public function eliminar(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+    
+        if($user->id_rol == '1'){
+            $rol_user = administrador::find($user->id); 
+            $rol_user->estado = 'false';
+            $rol_user->save();
+        }else if($user->id_rol == '2'){
+            $rol_user = cliente::find($user->id); 
+            $rol_user->estado = 'false';
+            $rol_user->save();
+        }else{
+            $rol_user = chofer::find($user->id); 
+            $rol_user->estado = 'false';
+            $rol_user->save();
+        }
+        $user->estado = 'false';
+        $user->save();
+        listar();
     }
 }
