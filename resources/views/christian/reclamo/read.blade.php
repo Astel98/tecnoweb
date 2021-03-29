@@ -1,4 +1,4 @@
-@extends("christian.template")
+@extends('layouts.app')
 
 @section("content")
 
