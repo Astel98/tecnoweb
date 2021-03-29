@@ -196,21 +196,23 @@ class UserController extends Controller
         return view('editperfil', ['user' => $user]);
     }
 
-    public function editar(Request $request)
+    public function editar($id)
     {
         //if (!$request->ajax()) return redirect('/');
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         return view('edituser', ['user' => $user]);
     }
 
-    public function editarUser(Request $request)
+    public function updateuser($id, Request $request)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
 
         $user->nombre = $request->nombre;
         $user->apellido = $request->apellido;
         $user->genero = $request->genero;
         $user->direccion = $request->direccion;
+        $user->save();
+        return view('home');
         $user_id_rol=-1;
 
         if($request->rol == "administrador"){
@@ -242,17 +244,17 @@ class UserController extends Controller
 
             if($user_id_rol=='1'){
                 $administrador = new administrador();
-                $administrador->id = $id->id;
+                $administrador->id = $user->id;
                 $administrador->save();
             }else if($user_id_rol=='2'){
                 $cliente = new cliente();
-                $cliente->id = $id->id;
+                $cliente->id = $user->id;
                 $cliente->estudiante = 'false';
                 $cliente->id_tarifa = '1';
                 $cliente->save();
             } else {
                 $chofer = new chofer();
-                $chofer->id = $id->id;
+                $chofer->id = $user->id;
                 $chofer->hora_entrada = "00:00:00";
                 $chofer->hora_salida = "00:00:00";
                 $chofer->save();
@@ -263,9 +265,9 @@ class UserController extends Controller
         listar();
     }
 
-    public function eliminar(Request $request)
+    public function eliminar($id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
     
         if($user->id_rol == '1'){
             $rol_user = administrador::find($user->id); 

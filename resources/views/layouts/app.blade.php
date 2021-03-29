@@ -50,10 +50,10 @@
                         </li>
                         @if(Auth::user()->id_rol == 1)
                         <li class="nav-item">
-                            <a class="nav-link" href="/usuarios">Usuarios</a>
+                            <a class="nav-link" href="{{ route('usuarios') }}">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/roles">Roles</a>
+                            <a class="nav-link" href="{{ route('roles') }}">Roles</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/reporte">Reportes</a>
@@ -142,6 +142,8 @@
             </div>
             <form>
         </nav>
+
+        
 
         <main class="py-4">
             @yield('content')

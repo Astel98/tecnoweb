@@ -17,11 +17,7 @@
       <td>{{$u->nombre}}</td>
       <td>{{$u->descripcion}}</td>
       <td>
-        <form id="accion" action="{{ route('editrol','$id') }}" method="get">
-        @csrf
-            <input type="hidden" class="form-control" id="id" name="id" value= "{{ $u->id }}">
-            <button class="bot" type="submit">Editar</button>
-        </form>
+        <a href="{{ route('editrol',["id" => $u->id]) }}" class="bot">Editar</a>
       </td>
     </tr>
     @endforeach

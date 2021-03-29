@@ -20,18 +20,10 @@
       <td>{{$u->email}}</td>
       <td>{{$u->genero}}</td>
       <td>
-        <form action="/user/editar" method="post">
-        @csrf
-            <input type="hidden" class="form-control" id="id" name="id" value= "{{ $u->id }}">
-            <button class="bot" type="submit">Editar</button>
-        </form>
+        <a href="{{ route('editaruser',["id" => $u->id]) }}" class="bot">Editar</a>
       </td>
       <td>
-        <form action="/user/eliminar" method="post">
-        @csrf
-            <input type="hidden" class="form-control" id="id" name="id" value= "{{ $u->id }}">
-            <button class="bot" type="submit">Eliminar</button>
-        </form>
+        <a href="{{ route('eliminaruser',["id" => $u->id]) }}" class="bot">Eliminar</a>
       </td>
     </tr>
     @endforeach

@@ -33,22 +33,20 @@ Route::get('/tarifas', [BusController::class, 'view'])->name('tarifas');
 Route::get('/usuarios', [BusController::class, 'view'])->name('usuarios');
 
 Route::get('/rol', [RolController::class, 'index']);
-Route::get('/roles', [RolController::class, 'listar']);
-Route::post('/rol/registrar', [RolController::class, 'store']);
-Route::put('/rol/actualizar', [RolController::class, 'update']);
+Route::get('/roles', [RolController::class, 'listar'])->name('roles');
 Route::get('/rol/selectRol', [RolController::class, 'selectRol']);
 Route::get('/rol/editar/{id}', [RolController::class, 'editar'])->name('editrol');
-Route::post('/rol/eliminar', [RolController::class, 'eliminar'])->name('deleterol');
-Route::post('/rol/update', [RolController::class, 'updateRol'])->name('updaterol');
+Route::get('/rol/eliminar/{id}', [RolController::class, 'eliminar'])->name('deleterol');
+Route::post('/rol/update/{id}', [RolController::class, 'updateRol'])->name('updaterol');
 
 Route::get('/user', [UserController::class, 'index']);
-Route::get('/usuarios', [UserController::class, 'listar']);
+Route::get('/usuarios', [UserController::class, 'listar'])->name('usuarios');
 Route::get('/user/perfil', [UserController::class, 'perfil']);
 
-Route::post('/user/editar', [UserController::class, 'editar']);
-Route::post('/user/eliminar', [UserController::class, 'eliminar']);
-Route::post('/user/editar2', [UserController::class, 'editarUser']);
-Route::post('/user/eliminar2', [UserController::class, 'eliminar']);
+Route::get('/user/editar/{id}', [UserController::class, 'editar'])->name('editaruser');
+Route::get('/user/eliminar/{id}', [UserController::class, 'eliminar'])->name('eliminaruser');
+Route::post('/user/update/{id}', [UserController::class, 'updateuser'])->name('actualizaruser');
+Route::post('/user/eliminar2', [UserController::class, 'eliminar'])->name('eliminaruser2');
 
 Route::get('/user/editarPerfil', [UserController::class, 'editarPerfil']);
 Route::post('/user/register', [UserController::class, 'store']);

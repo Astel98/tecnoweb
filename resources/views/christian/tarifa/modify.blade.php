@@ -1,4 +1,4 @@
-@extends("christian.template")
+@extends("layouts.app")
 
 @section("content")
 
@@ -26,6 +26,4 @@
    
     <button type="submit" class="btn btn-default">Submit</button>
   </form> 
-
-  
 @endsection
