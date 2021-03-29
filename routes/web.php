@@ -54,6 +54,7 @@ Route::post('/user/registrar', [UserController::class, 'store2']);
 Route::post('/user/actualizar', [UserController::class, 'update']);
 Route::get('/user/selectUsuario', [UserController::class, 'selectUsuario']);
 
+Route::post('/busqueda', [ReporteController::class, 'busqueda'])->name('busqueda');
 Route::get('/reporte', [ReporteController::class, 'reportes'])->name('reportes');
 Route::get('/reporte/buschofer', [ReporteController::class, 'getChoferBuses']);
 

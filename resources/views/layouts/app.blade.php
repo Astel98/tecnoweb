@@ -24,9 +24,9 @@
 </head>
 <body id="bodyTheme">
     <div id="app">
-        <nav id="navTheme" class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm" style="background:green;">
+        <nav id="navTheme" class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     Sistema Transporte BRT
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -62,8 +62,9 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <form class="d-flex" action="/busqueda" method="post">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" action="{{route('busqueda')}}" method="post">
+                        @csrf
+                      <input class="form-control me-2" type="search" placeholder="Search" id="valor" name="valor" aria-label="Search">
                       <button class="btn btn-outline-success" type="submit">Busqueda</button>
                     </form>
                     <ul class="navbar-nav ml-auto">
@@ -140,7 +141,6 @@
                     </ul>
                 </div>
             </div>
-            <form>
         </nav>
 
         

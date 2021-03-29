@@ -16,6 +16,23 @@ use Carbon\Carbon;
 
 class ReporteController extends Controller
 {
+    public function busqueda(Request $request){
+        $usuarios = User::select('*')
+            ->where('users.nombre', 'LIKE', '%'.$request->valor.'%',
+                'OR', 'users.apellido', 'LIKE', '%'.$request->valor.'%',
+                'OR', 'users.email', 'LIKE', '%'.$request->valor.'%',
+                'OR', 'users.direccion', 'LIKE', '%'.$request->valor.'%')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $buses = bus::select('*')
+            ->where('buses.nombre', 'LIKE', '%'.$request->valor.'%',
+                'OR', 'buses.descipcion', 'LIKE', '%'.$request->valor.'%')
+            ->orderBy('id', 'asc')
+            ->get();
+        
+        return view('busqueda', ['usuarios'=>$usuarios, 'buses'=>$buses]);
+    }
 
     public function reportes()
     {
