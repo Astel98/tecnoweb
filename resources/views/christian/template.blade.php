@@ -29,8 +29,16 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Promocion
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Ver Promocion</a></li>
-            <li><a href="#">Crear una Promocion</a></li>
+            <li><a href="{{ route('verpromocion') }}">Ver Promocion</a></li>
+            <li><a href="{{ route('showformpromocion') }}">Crear una Promocion</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reclamos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ route('verreclamo') }}">Ver mis reclamos</a></li>
+            <li><a href="{{ route('showformreclamo') }}">Crear un nuevo reclamo</a></li>
           </ul>
         </li>
       </ul>

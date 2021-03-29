@@ -24,12 +24,14 @@
         id="email" placeholder="Introduce el descuento" name="descuento">
     </div>
 
-      <select name="id_tarifa" id="">
-        @foreach ($tarifas as $tarifa)
-          <option value="{{ $tarifa->id }}" {{ ( $tarifa->id == $promocion[0]->id_tarifa  ? 'selected' : '' )}}>{{ $tarifa->nombre }}</option>
-        @endforeach
-      </select> <br>
-      <br>
+      <div class="form-group">
+        <label for="select">Nombre de las tarifas</label>
+        <select name="id_tarifa" id="">
+          @foreach ($tarifas as $tarifa)
+            <option value="{{ $tarifa->id }}" {{ ( $tarifa->id == $promocion[0]->id_tarifa  ? 'selected' : '' )}}>{{ $tarifa->nombre }}</option>
+          @endforeach
+        </select> 
+      </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form> 
 

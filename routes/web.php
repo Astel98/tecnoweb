@@ -61,3 +61,11 @@ Route::get('/promocion/modify/{id}',[PromocionController::class,'modify'])->name
 Route::post('/promocion/update/{id}',[PromocionController::class,'update'])->name('updatepromocion');
 Route::get('/promocion/delete/{id}', [PromocionController::class,'delete'])->name('deletepromocion');
 // end promociones
+// CRUD de reclamo begin
+Route::get('/reclamo/show',[ReclamoController::class,'read'])->name('verreclamo');
+Route::get('/reclamo/showform',[ReclamoController::class,'showForm'])->name('showformreclamo');
+Route::post('/reclamo/showform',[ReclamoController::class,'create'])->name('showformreclamo');
+Route::get('/reclamo/modify/{id}',[ReclamoController::class,'modify'])->name('modifyreclamo');
+Route::post('/reclamo/update/{id}',[ReclamoController::class,'update'])->name('updatereclamo');
+Route::get('/reclamo/delete/{id}', [ReclamoController::class,'delete'])->name('deletereclamo');
+// end reclamo
