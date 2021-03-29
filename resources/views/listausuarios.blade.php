@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="{{ route('crearuser') }}" class="bot">Crear nuevo usuario</a>
 <table class="table">
   <thead>
     <tr>

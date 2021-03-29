@@ -56,7 +56,7 @@
     <tr>
       <th scope="row">#</th>
       <td>Estadisticas</td>
-      <td><form action="/reporte/usuarios" method="GET"><button type="submit" class="bot">Descargar Estadisticas</button></form></td>
+      <td><form action="/estadistica" method="GET"><button type="submit" class="bot">Ver Estadisticas</button></form></td>
       
     </tr>
     

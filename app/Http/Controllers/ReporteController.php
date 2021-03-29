@@ -161,4 +161,40 @@ class ReporteController extends Controller
         return $pdf->download('ejemplo.pdf');
     }
 
+    public function estadistica(){
+
+        
+
+        $nro_usuarios = User::count();
+        $nro_clientes = cliente::count();
+        $nro_choferes = chofer::count();
+        $nro_admins = administrador::count();
+
+        return view('pdfs.estadisticas',[
+            'nro_usuarios' => $nro_usuarios,
+            'nro_choferes' => $nro_choferes,
+            'nro_admins' => $nro_admins,
+            'nro_clientes' => $nro_clientes
+        ]);
+
+        $nro_buses = bus::count();
+        $buses_modelos = DB::select('select count(distinct modelo) from buses order by id');
+        $buses_estado = DB::select('select count(distinct estado) from buses order by id');
+
+        $pdf = \PDF::loadView('pdfs.estadisticas', 
+            [
+                'nro_usuarios' => $nro_usuarios,
+                'nro_choferes' => $nro_choferes,
+                'nro_admins' => $nro_admins, 
+                'buses_modelos' => $buses_modelos, 
+                'nro_buses' => $nro_buses, 
+                'buses_estado' => $buses_estado, 
+                'nro_clientes' => $nro_clientes
+            ]
+        );
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('ejemplo.pdf');
+
+    }
+
 }

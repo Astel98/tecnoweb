@@ -49,12 +49,14 @@ Route::post('/user/update/{id}', [UserController::class, 'updateuser'])->name('a
 Route::post('/user/eliminar2', [UserController::class, 'eliminar'])->name('eliminaruser2');
 
 Route::get('/user/editarPerfil', [UserController::class, 'editarPerfil']);
-Route::post('/user/register', [UserController::class, 'store']);
+Route::get('/user/crear', [UserController::class, 'crear'])->name('crearuser');
+Route::post('/user/register', [UserController::class, 'store'])->name('registraruser');
 Route::post('/user/registrar', [UserController::class, 'store2']);
 Route::post('/user/actualizar', [UserController::class, 'update']);
 Route::get('/user/selectUsuario', [UserController::class, 'selectUsuario']);
 
 Route::post('/busqueda', [ReporteController::class, 'busqueda'])->name('busqueda');
+Route::get('/estadistica', [ReporteController::class, 'estadistica'])->name('estadistica');
 Route::get('/reporte', [ReporteController::class, 'reportes'])->name('reportes');
 Route::get('/reporte/buschofer', [ReporteController::class, 'getChoferBuses']);
 

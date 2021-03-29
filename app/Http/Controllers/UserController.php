@@ -92,6 +92,8 @@ class UserController extends Controller
             $chofer->estado = true;
             $chofer->save();
         }
+
+        return $this->listar();
                
     }
 
@@ -195,6 +197,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('edituser', ['user' => $user]);
     }
+
+    public function crear()
+    {
+        return view('crearuser');
+    }
+
 
     public function updateuser($id, Request $request)
     {
