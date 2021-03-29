@@ -3,73 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\bus;
+use Illuminate\Support\Facades\DB;
 
 class BusController extends Controller
 {
-
-    public function store(Request $request)
-    {
-        //if (!$request->ajax()) return redirect('/');
-        
-        $bus = new bus();
-        $bus->nombre = $request->nombre;
-        $bus->apellido = $request->apellido;
-        $bus->email = $request->email;
-        $bus->ci = $request->ci;
-        $bus->genero = $request->genero;
-        $bus->direccion = $request->direccion;
-        $bus->telefono = $request->telefono;
-        $bus->fecha_nac = $request->fecha_nac;
-        $bus->password = bcrypt($request->password);
-        $bus->id_rol=$request->id_rol;
-        $bus->save();
-
-        $id = bus::findByEmail($request->email);
-
-        if($request->id_rol=='1'){
-            $administrador = new administrador();
-            $administrador->id = $id->id;
-            $administrador->save();
-        }
-
-        if($request->id_rol=='2'){
-            $cliente = new cliente();
-            $cliente->id = $id->id;
-            $cliente->estudiante = 'false';
-            $cliente->id_tarifa = '1';
-            $cliente->save();
-        }
-
-        if($request->id_rol=='3'){
-            $chofer = new chofer();
-            $chofer->id = $id->id;
-            $chofer->hora_entrada = "00:00:00";
-            $chofer->hora_salida = "00:00:00";
-            $chofer->save();
-        }
-               
+    
+    function read(){
+        $data = DB::select('select * from buses order by id');
+        return view("casos.buses.read",[ "buses" => $data]);
     }
 
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function view()
-    {
-        //Cookie::queue('Tiempo', now(), 60);
-        return view('buses');
+    function showForm(){
+        $data = DB::select('select * from rutas order by id');
+        return view('casos.buses.create',["ruta" => $data]);
     }
 
-    public function getBuses()
-    {
-        $roles = bus::select('*')
-            ->orderBy('id', 'desc')
-            ->get();
+    function create(Request $request){
+        $nombre = $request->nombre;
+        $descripcion = $request->descripcion;
+        $modelo = $request->modelo;
+        $capacidad = $request->capacidad;
+        $estado = $request->estado;
+        $id_ruta = $request->id_ruta;
+        DB::insert('insert into buses(nombre,descripcion,modelo,capacidad,estado,id_ruta) 
+        values(?,?,?,?,?,?)', [$nombre,$descripcion,$modelo,$capacidad,$estado,$id_ruta]);
+        return $this->read();
+    }   
 
-        return ['roles' => $roles];
+    function modify($id){
+        $data = DB::select('select * from buses where id = ? limit 1',[$id]);
+        $rutas = DB::select('select * from rutas order by id');
+        return view('casos.buses.modify',["bus" => $data, "buses" => $buses]);
+    }
+
+    function update($id, Request $request){
+        $nombre = $request->nombre;
+        $descripcion = $request->descripcion;
+        $modelo = $request->modelo;
+        $capacidad = $request->capacidad;
+        $estado = $request->estado;
+        $id_ruta = $request->id_ruta;
+        DB::update('update buses set nombre = ?, descripcion = ?, modelo = ?, capacidad = ?, estado = ?, id_ruta = ? where id = ?',[$nombre,$descripcion,$modelo,$capacidad,$estado,$id_ruta,$id]);
+        return $this->read();
+    }
+
+    function delete($id){
+        DB::delete('delete from buses where id = ?', [$id]);
+        return $this->read();
     }
 }
