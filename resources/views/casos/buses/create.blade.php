@@ -1,4 +1,5 @@
-@extends("casos.template")
+@extends('layouts.app')
+
 
 @section("content")
 
@@ -26,11 +27,11 @@
         <label for="email">Estado:</label>
         <input class="form-control" id="email" placeholder="Introduce el estado" name="estado">
       </div>
-    <select name="id_ruta" id="">
+    Nombre de la ruta: <select name="id_ruta" id="">
         @foreach ($rutas as $ruta)
         <option value="{{$ruta->id}}">{{ $ruta->nombre }}</option>
         @endforeach
-    </select>
+    </select> <br> <br>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 @endsection

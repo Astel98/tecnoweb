@@ -35,12 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/buses">Buses</a>
-                        </li>
+                     
                    
                           <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -72,9 +67,34 @@
                             </a>
                           </li>   
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/rutas">Rutas</a>
-                        </li>
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Tramos
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('vertramos') }}">Ver mis tramos</a></li>
+                                      <li><a href="{{ route('showformtramos') }}">Crear un nuevo tramo</a></li>
+                                    </ul>
+                            </a>
+                          </li>   
+
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Buses
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('verbuses') }}">Ver los buses</a></li>
+                                      <li><a href="{{ route('showformbuses') }}">Crear un nuevo bus</a></li>
+                                    </ul>
+                            </a>
+                          </li>  
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Rutas
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('verrutas') }}">Ver las rutas</a></li>
+                                      <li><a href="{{ route('showformrutas') }}">Crear una nueva ruta</a></li>
+                                    </ul>
+                            </a>
+                          </li>  
                      
                         @if(Auth::user()->id_rol == 1)
                         <li class="nav-item">
@@ -186,10 +206,7 @@
               </div>
             </div>
           </div>
-<<<<<<< HEAD
           
-=======
->>>>>>> 05fadc48be949f38550e16a8a471c93f5d089779
     </div>
 </body>
 <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
