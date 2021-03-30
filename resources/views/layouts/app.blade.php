@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Sistema BRT</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     
@@ -42,20 +41,41 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/buses">Buses</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reclamos
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{ route('verreclamo') }}">Ver mis reclamos</a></li>
-                              <li><a href="{{ route('showformreclamo') }}">Crear un nuevo reclamo</a></li>
-                            </ul>
-                          </li>
+                   
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               Tarifa
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('vertarifa') }}">Ver Tarifas</a></li>
+                                      <li><a href="{{ route('showformtarifa') }}">Crear una Tarifa</a></li>
+                                    </ul>
+                            </a>
+                          </li> 
+                          
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Promocion
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('verpromocion') }}">Ver Promocion</a></li>
+                                      <li><a href="{{ route('showformpromocion') }}">Crear una Promocion</a></li>
+                                    </ul>
+                            </a>
+                          </li>   
+                          
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Reclamos
+                                    <ul class="dropdown-menu">
+                                      <li><a href="{{ route('verreclamo') }}">Ver mis reclamos</a></li>
+                                      <li><a href="{{ route('showformreclamo') }}">Crear un nuevo reclamo</a></li>
+                                    </ul>
+                            </a>
+                          </li>   
+
                         <li class="nav-item">
                             <a class="nav-link" href="/rutas">Rutas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tarifas">Tarifas</a>
-                        </li>
+                     
                         @if(Auth::user()->id_rol == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('usuarios') }}">Usuarios</a>
@@ -166,7 +186,10 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           
+=======
+>>>>>>> 05fadc48be949f38550e16a8a471c93f5d089779
     </div>
 </body>
 <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
