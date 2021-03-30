@@ -15,7 +15,7 @@ class BusController extends Controller
 
     function showForm(){
         $data = DB::select('select * from rutas order by id');
-        return view('casos.buses.create',["ruta" => $data]);
+        return view('casos.buses.create',["rutas" => $data]);
     }
 
     function create(Request $request){

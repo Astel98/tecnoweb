@@ -11,6 +11,7 @@ use App\Http\Controllers\RutaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ReclamoController;
 use App\Http\Controllers\TarifaController;
+use App\Http\Controllers\TramoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,4 +91,30 @@ Route::post('/reclamo/showform',[ReclamoController::class,'create'])->name('show
 Route::get('/reclamo/modify/{id}',[ReclamoController::class,'modify'])->name('modifyreclamo');
 Route::post('/reclamo/update/{id}',[ReclamoController::class,'update'])->name('updatereclamo');
 Route::get('/reclamo/delete/{id}', [ReclamoController::class,'delete'])->name('deletereclamo');
+// end reclamo
+
+
+//C CRUD de tarifa begin
+Route::get('/bus/show',[BusController::class,'read'])->name('verbuses');
+Route::get('/bus/showform',[BusController::class,'showForm'])->name('showformbuses');
+Route::post('/bus/showform',[BusController::class,'create'])->name('showformbus');
+Route::get('/bus/modify/{id}',[BusController::class,'modify'])->name('modifybus');
+Route::post('/bus/update/{id}',[BusController::class,'update'])->name('updatebus');
+Route::get('/bus/delete/{id}', [BusController::class,'delete'])->name('deletebus');
+// end tarifa
+// CRUD de promocion begin
+Route::get('/rutas/show',[RutaController::class,'read'])->name('verrutas');
+Route::get('/rutas/showform',[RutaController::class,'showForm'])->name('showformrutas');
+Route::post('/rutas/showform',[RutaController::class,'create'])->name('showformruta');
+Route::get('/rutas/modify/{id}',[RutaController::class,'modify'])->name('modifyruta');
+Route::post('/rutas/update/{id}',[RutaController::class,'update'])->name('updateruta');
+Route::get('/rutas/delete/{id}', [RutaController::class,'delete'])->name('deleteruta');
+// end promociones
+// CRUD de reclamo begin
+Route::get('/tramos/show',[TramoController::class,'read'])->name('vertramos');
+Route::get('/tramos/showform',[TramoController::class,'showForm'])->name('showformtramos');
+Route::post('/tramos/showform',[TramoController::class,'create'])->name('showformtramo');
+Route::get('/tramos/modify/{id}',[TramoController::class,'modify'])->name('modifytramo');
+Route::post('/tramos/update/{id}',[TramoController::class,'update'])->name('updatetramo');
+Route::get('/tramos/delete/{id}', [TramoController::class,'delete'])->name('deletetramo');
 // end reclamo

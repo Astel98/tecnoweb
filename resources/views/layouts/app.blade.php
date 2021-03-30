@@ -42,6 +42,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/buses">Buses</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reclamos
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{ route('verreclamo') }}">Ver mis reclamos</a></li>
+                              <li><a href="{{ route('showformreclamo') }}">Crear un nuevo reclamo</a></li>
+                            </ul>
+                          </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/rutas">Rutas</a>
                         </li>
@@ -145,9 +153,20 @@
 
         
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container-fluid text-center">    
+            <div class="row content">
+              <div class="col-sm-2 sidenav">
+               
+              </div>
+              <div class="col-sm-8 text-left"> 
+                @yield("content")
+              </div>
+              <div class="col-sm-2 sidenav">
+             
+              </div>
+            </div>
+          </div>
+          
     </div>
 </body>
 <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
